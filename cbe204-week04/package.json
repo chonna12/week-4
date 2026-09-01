@@ -1,0 +1,16 @@
+{
+  "name": "cbe204-week04",
+  "version": "1.0.0",
+  "description": "node project",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
