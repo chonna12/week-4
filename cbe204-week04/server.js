@@ -1,54 +1,66 @@
-import e, { request } from "express";   
-import {students} from "./data.js";
-import express from "express";
+import express from 'express';
+import { students } from './data.js';
+
 const app = express();
+const PORT = 3000;
+
+
 app.use(express.json());
-
-app.listen(3000, () => {
-    console.log("Server is running on port 3000");
-});
-
 app.use((req, res, next) => {
-    console.log(req.method, req.url);
+    console.log(`${req.method} ${req.url}`);
     next();
 });
 
+
 app.get("/", (req, res) => {
-    res.send("Hello cbe204");
+    res.send('Hello, CBE204');
 });
 
-function About(req, res) {
-    res.send("This is \
-        the about page");
-}
-
-app.get("/about", About);
+app.get("/about", (req, res) => {
+    res.send('This is a set of APIs used to demonstrate REST APIs for CBE204 Web tech class');
+});
 
 app.get("/students", (req, res) => {
-    res.send(students);
+    res.status(200).json(students);
 });
 
-function checkstudentID(student, id) {
-  if (student.id == id) return true;
-  else return false;
-}    
+
+function checkStudentID(student, id) {
+    return student.id === parseInt(id, 10);
+}
+
 
 app.get("/students/:id", (req, res) => {
     const id = req.params.id;
-    const request_student = students.find(function(student) {
-        return checkstudentID(student, id);
-    });
 
-    
-    if (request_student) {
-        res.send(request_student);
+    const requested_student = students.find((student) => checkStudentID(student, id));
+
+    if (requested_student) {
+        res.status(200).json(requested_student);
     } else {
-        res.status(404).send("Student not found");
+        res.status(404).json({ error: `Student with ID ${id} not found` });
     }
 });
 
+
 app.post("/students", (req, res) => {
     const newStudent = req.body;
+
+    if (!newStudent || !newStudent.name) {
+        return res.status(400).json({ error: "name is required" });
+    }
+
+    const newId = students.length > 0
+        ? Math.max(...students.map((s) => s.id)) + 1
+        : 1;
+
+    newStudent.id = newId;
     students.push(newStudent);
+
     res.status(201).json(newStudent);
+});
+
+
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
