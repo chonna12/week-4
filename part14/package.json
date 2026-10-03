@@ -1,0 +1,17 @@
+{
+  "name": "part14",
+  "version": "1.0.0",
+  "description": "This project is a simple REST API built with Node.js and Express.js. It manages a collection of books, allowing users to retrieve all books, retrieve a specific book by its ID, and add new books to the collection using in-memory data storage.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
