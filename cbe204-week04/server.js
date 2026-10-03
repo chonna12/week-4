@@ -4,7 +4,10 @@ import { students } from './data.js';
 const app = express();
 const PORT = 3000;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7ea2edfc6ff381ed9e04a52037a230b0b1854237
 app.use(express.json());
 app.use((req, res, next) => {
     console.log(`${req.method} ${req.url}`);
@@ -19,6 +22,10 @@ app.get("/", (req, res) => {
 app.get("/about", (req, res) => {
     res.send('This is a set of APIs used to demonstrate REST APIs for CBE204 Web tech class');
 });
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7ea2edfc6ff381ed9e04a52037a230b0b1854237
 
 app.get("/students", (req, res) => {
     res.status(200).json(students);
@@ -28,7 +35,10 @@ app.get("/students", (req, res) => {
 function checkStudentID(student, id) {
     return student.id === parseInt(id, 10);
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7ea2edfc6ff381ed9e04a52037a230b0b1854237
 
 app.get("/students/:id", (req, res) => {
     const id = req.params.id;

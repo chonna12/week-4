@@ -10,3 +10,5 @@ To install and set up this project on your local machine, follow these steps:
 3. Run the following command to install the required dependencies:
    ```bash
    npm install
+
+postman
